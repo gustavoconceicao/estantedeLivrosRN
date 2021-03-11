@@ -10,24 +10,29 @@ import {Provider} from "react-redux"
 import store from "./src/store"
 import HeaderSearch from './src/components/headerSearch';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Headerhome from "./src/components/headerHome"
 
-export default function App() {
+export default function App({}) {
   const Stack = createStackNavigator()
 
-function teste () {
-  console.warn ("testado")
-}
-
-  return ( 
+  
+   return ( 
     <SafeAreaProvider>
       <Provider store = {store}>
           <NavigationContainer>
           <StatusBar style="auto" />
-          <Stack.Navigator initialRouteName="Pagina Inicial" screenOptions={{headerTitleAlign: 'center'}}>         
-              <Stack.Screen name= "Seus_Livros" component={home}/>
-              <Stack.Screen name= "Procurar" component={search} options={{
-                header: (props) => <HeaderSearch {...props}/>     
-              }}/>
+          <Stack.Navigator initialRouteName="Seus Livros" screenOptions={{headerTitleAlign: 'center'}}>         
+              <Stack.Screen name= "Seus Livros"
+                  component={home}
+                  options={{
+                      headerRight: (props) => <Headerhome {...props}/>
+                  }}
+               />
+              <Stack.Screen name= "Procurar"
+                component={search}
+                 options={{
+                    header: (props) => <HeaderSearch {...props}/>     
+                 }}/>
               <Stack.Screen name="Detalhes" component={details}/>
           </Stack.Navigator>
       </NavigationContainer>
